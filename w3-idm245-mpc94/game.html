@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Infection || Game</title>
+  <!--Add Phaser Framework library-->
+  <script src="phaser.min.js"></script>
+  <!--Add custom stylesheet-->
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+  <div id="phaser-canvas"></div>
+  <!--Custom Javascript-->
+  <script type="text/javascript">
+  window.onload = function () {
+
+    var game = new Phaser.Game(960, 720, Phaser.AUTO, 'phaser-canvas', { preload: preload, create: create });
+    //'' is the same as the div.id 
+
+    function preload () {
+      game.load.image('background','img/background.png');
+      game.load.image('marker','img/marker.png');
+
+      game.load.spritesheet('playButton', 'img/play_button.png', 180, 90);
+    }
+
+    function  create () {
+      var spBackground = game.add.sprite(0, 0, 'background');
+
+      var spMarker = game.add.sprite(game.world.centerX + 30, game.world.centerY - 130, 'marker');
+
+      //Add text
+      var scoreStr = '1200';
+
+      var generalStyle = {
+        width: '150px',
+        font: '35px Arial',
+        fill: 'black',
+        alignment: 'left'
+      };
+
+      var txScore = game.add.text(25, 15, scoreStr, generalStyle);
+
+      //add button
+      //the number given are the indexes of the frames in this order CURSOR: OVER, OUT, DOWN.
+ 
+      var btPlay = game.add.button(25, 50, 'playButton', actionOnClick, this, 1, 0, 2);
+
+
+
+      function actionOnClick (){
+        console.log('hi');
+      };
+    } 
+
+
+  }; //end window.onload
+  </script>
+</body>
+</html>
