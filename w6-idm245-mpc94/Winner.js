@@ -17,7 +17,7 @@ gameObj.Winner.prototype = {
 
     //Add text
     var scoreStr = gameObj.gScore;
-    var timeStr = '2:30';
+    var timeStr = gameObj.gTime;
 
     var txScore = this.add.text(25, 15, scoreStr);
     var txTime = this.add.text(this.world.width - 115, 15, timeStr);

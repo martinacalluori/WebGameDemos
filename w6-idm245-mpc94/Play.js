@@ -37,7 +37,7 @@ gameObj.Play.prototype = {
 
     //Add text
     var scoreStr = '0';
-    var timeStr = '0:00';
+    var timeStr = '1:10';
 
     txScore = this.add.text(25, 15, scoreStr);
     txTime = this.add.text(this.world.width - 115, 15, timeStr);
@@ -51,7 +51,7 @@ gameObj.Play.prototype = {
     txTime.fontSize = 36;
 
     // Setup timer
-    timerSeconds = 0;
+    timerSeconds = 70;
 
     // Create a timer obj
     timerObj = this.game.time.create(false);
@@ -78,7 +78,8 @@ gameObj.Play.prototype = {
   },
   updateTimerFun: function () {
     console.log('updateTimerFun called');
-    timerSeconds++;
+    timerSeconds--;
+    if (timerSeconds > 0){
     // txTime.text = timerSeconds;
     var displayMin = Math.floor(timerSeconds / 60) % 60;
     var displaySec = Math.floor(timerSeconds) % 60;
@@ -87,5 +88,13 @@ gameObj.Play.prototype = {
     }
     gameObj.gTime = displayMin + ':' + displaySec;
     txTime.text = gameObj.gTime;
+    } else {
+        // Time is up
+      if (gameObj.gScore > 100) {
+        this.state.start('Winner');
+      } else {
+        this.state.start('Loser');
+      }
+    }
   }
 };
